@@ -41,9 +41,6 @@ def infix_to_postfix(infix_expr):
                 postfix_list.append(op_stack.pop())
             op_stack.pop()  # Pop the '('
         elif token in precedence:  # Operator
-            # Handle consecutive operators or invalid tokens
-            if len(postfix_list) == 0 or postfix_list[-1] in precedence:
-                raise ValueError("Invalid expression: Consecutive operators or missing operand")
             # check stack is not empty and rank của cái trước lớn hiện tại hoặc =
             while (not op_stack.is_empty() and
                    (precedence[op_stack.peek()] > precedence[token] or
@@ -64,17 +61,26 @@ def infix_to_postfix(infix_expr):
 
 
 def postfix_eval(postfix_expr):
+    if not postfix_expr:
+        raise ValueError("Input is empty")
     operand_stack = Stack()
     token_list = postfix_expr.split()
 
     for token in token_list:
         if token.isdigit():
             operand_stack.push(int(token))
-        else:
+        elif token in ['+','-','*','/','^']:
+            if operand_stack.size() < 2: # Check for sufficient operands
+                raise ValueError("Insufficient operand.")
             operand2 = operand_stack.pop()
             operand1 = operand_stack.pop()
             result = do_math(token, operand1, operand2)
             operand_stack.push(result)
+        #handle invalid operators
+        else:
+            raise ValueError(f"Invalid character {token} in expression.")
+    if operand_stack.size() != 1:  # There should be exactly one result
+        raise ValueError("Invalid postfix expression: Too many operands left on stack.")
     return operand_stack.pop()
 
 def do_math(token, operand1, operand2):

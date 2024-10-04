@@ -1,5 +1,5 @@
 from stack import Stack
-# Some errors i can handle in this function:
+# Some errors I can handle in this function:
 # 1. Unmatch Parentheses :  There may be more opening or closing parentheses.
 # 2. Invalid Characters : Input may contain characters that are not valid
 # (e.g., special symbols, letters not intended as variables).

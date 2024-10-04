@@ -55,7 +55,10 @@ def infix_to_postfix(infix_expr):
             raise ValueError(f"Invalid character {token} in expression.")
     # Pop all the operators from the stack
     while not op_stack.is_empty():
-        postfix_list.append(op_stack.pop())
+        top_token = op_stack.pop()
+        if top_token == '(':
+            raise ValueError("Unmatched opening parenthesis.")
+        postfix_list.append(top_token)
 
     return ' '.join(postfix_list)  # Return the postfix expression as a string
 

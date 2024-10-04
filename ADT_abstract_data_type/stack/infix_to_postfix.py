@@ -83,15 +83,30 @@ def postfix_eval(postfix_expr):
         raise ValueError("Invalid postfix expression: Too many operands left on stack.")
     return operand_stack.pop()
 
-def do_math(token, operand1, operand2):
-    if token == '+':
+def do_math(operator, operand1, operand2):
+    """
+        Performs arithmetic operations based on the operator provided.
+        Args:
+            operator (str): The operator to use ('+', '-', '*', '/', '^').
+            operand1 (int): The first operand.
+            operand2 (int): The second operand.
+        Returns:
+            int: The result of the arithmetic operation.
+        """
+    if operator == '+':
         return operand1 + operand2
-    elif token == '-':
+    elif operator == '-':
         return operand1 - operand2
-    elif token == '*':
+    elif operator == '*':
         return operand1 * operand2
-    elif token == '/':
+    elif operator == '/':
+        if operand2 == 0:
+            raise ZeroDivisionError("Cannot divide by zero")
         return operand1 / operand2
+    elif operator == '^':
+        return operand1 ** operand2
+    else:
+        raise ValueError(f"Invalid operator: {operator}")
 
 
 

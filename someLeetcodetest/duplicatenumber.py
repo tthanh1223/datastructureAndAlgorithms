@@ -1,5 +1,4 @@
 #Given an array of integers nums containing n + 1 integers where each integer is in the range [1, n] inclusive.
-from intersection import binary_search
 
 #There is only one repeated number in nums, return this repeated number.
 

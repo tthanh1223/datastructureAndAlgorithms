@@ -22,44 +22,35 @@ class Stack:
     """
 
     def __init__(self):
-        """
-        Initialize an empty stack.
-        """
+        """Initialize an empty stack."""
         self.items = []
 
     def is_empty(self):
-        """
-        Check if the stack is empty.
-        """
+        """Check if the stack is empty."""
         return self.items == []
 
     def push(self, item):
-        """
-        Add an item to the top of the stack.
-        """
+        """Add an item to the top of the stack."""
         self.items.append(item)
 
     def pop(self):
+        """Remove and return the item from the top of the stack.
+
+        Raises:
+            IndexError: If the stack is empty.
         """
-        Remove and return the item from the top of the stack.
-        """
+        if self.is_empty():
+            raise IndexError("pop from empty stack")  # Better error handling
         return self.items.pop()
 
     def peek(self):
-        """
-        Return the item at the top of the stack without removing it.
-        """
+        """Return the item at the top of the stack without removing it."""
         return self.items[-1] if not self.is_empty() else None  # Added safety for empty stack
 
     def size(self):
-        """
-        Get the number of items in the stack.
-        """
+        """Get the number of items in the stack."""
         return len(self.items)
 
     def __str__(self):
-        """
-        Return a string representation of the stack.
-        """
+        """Return a string representation of the stack."""
         return str(self.items)
-

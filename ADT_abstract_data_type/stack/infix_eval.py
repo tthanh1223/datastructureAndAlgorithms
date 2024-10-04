@@ -25,6 +25,25 @@ def preprocess_expression(expr: str) -> str:
 
     return ''.join(processed).strip()
 
+def tokenize(expression:str) -> list:
+    """Tokenizes the input expression into numbers and operators.
+    We don't need to process the expression to add value anymore with this function."""
+    tokens = []
+    #handle decimal points
+    current_number = ""
+    for char in expression:
+        if char.isdigit() or char == ".":
+            current_number += char # Collect digits and decimal points
+        else:
+            if current_number:
+                tokens.append(current_number) ## Add the collected number
+                current_number = ""
+            if char in PRECEDENCE:
+                tokens.append(char) # Add operators
+    if current_number:
+        tokens.append(current_number) # Add the last number if exists
+
+    return tokens
 
 def infix_evaluate(infix_expression:str):
     """Calculate infix expression like a casio one"""
@@ -35,12 +54,12 @@ def infix_evaluate(infix_expression:str):
     operators_stack = stack.Stack()
     operands_stack = stack.Stack()
 
-    token_list = infix_expression.split()
+    token_list = tokenize(infix_expression)
     open_parenthesis_count = 0
 
     for token in token_list:
-        if token.isdigit(): #numbers
-            operands_stack.push(int(token))
+        if token.replace('.','',1).isdigit(): #numbers (float or int)
+            operands_stack.push(float(token))
 
         elif token == '(': #Open parenthesis
             operators_stack.push(token)

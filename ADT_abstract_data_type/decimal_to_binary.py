@@ -1,4 +1,4 @@
-from stack import Stack
+from ADT_abstract_data_type.stack import Stack
 def convert_to_binary(dec_num):
     s = Stack()
     while dec_num > 0:

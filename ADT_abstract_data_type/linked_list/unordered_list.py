@@ -29,9 +29,6 @@ class UnorderedList:
 		Insert an item at the front of the linked list.
 	index(item):
 		Returns the index of the first occurrence of an item in the linked list.
-	pop(position):
-		Removes and returns the item at the specified position.
-		If no position is given, it removes the last item.
 	slicing(start, stop):
 		Returns a new list containing the items from start to stop indices. Don't count the item in stop position. (like a list)
 	reverse():
@@ -105,10 +102,10 @@ class UnorderedList:
 				self.head = current.get_next()
 				if self.head is None: # list is empty
 					self.tail = None
-		else:
-			previous.set_next(current.get_next())
-			if current.get_next() is None: # Removing the tail
-				self.tail = previous
+			else:
+				previous.set_next(current.get_next())
+				if current.get_next() is None: # Removing the tail
+					self.tail = previous
 		# decrease the count
 		self.node_count -= 1
 
@@ -183,7 +180,7 @@ class UnorderedList:
 		if current.get_next() is None: #If it was the last element, update tail
 			self.tail = previous
 		self.node_count -= 1
-		return current # Return the entire node
+		return current.get_data() # Return the entire node
 
 	def insert(self,position,item):
 		"""
@@ -249,6 +246,12 @@ class UnorderedList:
 
 		return new_list
 
+	def __iter__(self):
+		"""Returns an iterator for the linked list."""
+		current = self.head
+		while current is not None:
+			yield current.get_data()
+			current = current.get_next()
 
 if __name__ == "__main__":
 	unordered_list = UnorderedList()
@@ -261,3 +264,4 @@ if __name__ == "__main__":
 	print(unordered_list.slicing(2,unordered_list.size()))
 	unordered_list.reverse()
 	print(unordered_list)
+	print(20 in unordered_list)

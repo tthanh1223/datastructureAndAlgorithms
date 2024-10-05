@@ -66,3 +66,6 @@ class Node:
             new_next: The new reference to the next node.
         """
         self.next = new_next
+
+    def __str__(self):
+        return f"{self.data}"

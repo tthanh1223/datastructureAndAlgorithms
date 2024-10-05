@@ -69,3 +69,27 @@ class Node:
 
     def __str__(self):
         return f"{self.data}"
+
+class DoubleNode:
+        def __init__(self, data):
+            self.data = data
+            self.next = None  # Reference to the next node
+            self.prev = None  # Reference to the previous node
+
+        def get_data(self):
+            return self.data
+
+        def set_data(self, data):
+            self.data = datax
+
+        def get_next(self):
+            return self.next
+
+        def set_next(self, next_node):
+            self.next = next_node
+
+        def get_prev(self):
+            return self.prev
+
+        def set_prev(self, prev_node):
+            self.prev = prev_node

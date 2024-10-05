@@ -253,6 +253,21 @@ class UnorderedList:
 			yield current.get_data()
 			current = current.get_next()
 
+	def __getitem__(self, index):
+		"""
+		Get the item at the specified index.
+		@param index: The index of the item to retrieve.
+		@return: The item at the specified index.
+		"""
+		if index < 0 or index >= self.size():
+			raise IndexError("Index out of range")
+
+		current = self.head
+		for _ in range(index):
+			current = current.get_next()  # Traverse the list
+
+		return current.get_data()  # Return the data at the index
+
 if __name__ == "__main__":
 	unordered_list = UnorderedList()
 	unordered_list.add(10)

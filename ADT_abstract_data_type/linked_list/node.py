@@ -80,7 +80,7 @@ class DoubleNode:
             return self.data
 
         def set_data(self, data):
-            self.data = datax
+            self.data = data
 
         def get_next(self):
             return self.next

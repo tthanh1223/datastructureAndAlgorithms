@@ -40,5 +40,4 @@ def evaluate(parse_tree):
         return fn(evaluate(left), evaluate(right))
     else:
         return parse_tree.get_root_val()
-pt = build_parse_tree("( ( 10 + 5 ) * 3 )")
-pt.postorder()
+

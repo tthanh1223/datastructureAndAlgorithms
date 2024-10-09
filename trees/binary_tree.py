@@ -103,6 +103,29 @@ class BinaryTree:
         """
         return self.key
 
+def preorder(a_tree: BinaryTree):
+    """
+     we visit the root node first,
+     then recursively do a preorder traversal of the left subtree,
+     followed by a recursive preorder traversal of the right subtree.
+    """
+    if a_tree:
+        print(a_tree.get_root_val())
+        preorder(a_tree.get_left_child())
+        preorder(a_tree.get_right_child())
+
+def inorder(a_tree: BinaryTree):
+    if a_tree:
+        inorder(a_tree.get_left_child())
+        print(a_tree.get_root_val())
+        inorder(a_tree.get_right_child())
+
+def postorder(a_tree:BinaryTree):
+    if a_tree:
+        postorder(a_tree.get_left_child())
+        postorder(a_tree.get_right_child())
+        print(a_tree.get_root_val())
+
 if __name__ == '__main__':
     tree = BinaryTree('a')
     tree.insert_left('b')

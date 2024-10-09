@@ -126,10 +126,4 @@ def postorder(a_tree:BinaryTree):
         postorder(a_tree.get_right_child())
         print(a_tree.get_root_val())
 
-if __name__ == '__main__':
-    tree = BinaryTree('a')
-    tree.insert_left('b')
-    tree.insert_right('c')
-    tree.left_child.insert_right('d')
-    tree.right_child.insert_left('e')
-    tree.right_child.insert_right('f')
+

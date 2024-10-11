@@ -121,7 +121,7 @@ class AVLTree:
                 node.set_left(self.rotate_left(node.left))
             return self.rotate_right(node)
         # Balance must be -2
-        # Case 3 and 4, the tree is leaning to the left
+        # Case 3 and 4: the tree is leaning to the left
         if node.right.balance_factor() == -1:
             # Case 4, we first do a right rotation
             node.set_right(self.rotate_right(node.right))
@@ -143,7 +143,7 @@ class AVLTree:
                 current = current.right
         # We found the parent, create the new node
         new_node = AVLNode(value, parent)
-        # Case 1: The parent is None so the new node is the root
+        # Case 1: The parent is `None` so the new node is the root
         if parent is None:
             self.root = new_node
         else:
@@ -216,3 +216,56 @@ class AVLTree:
     def __contains__(self, item):
         node = self.locate_node(item)
         return node is not None
+
+    def delete_leaf(self,node):
+        if node.parent is None:
+            self.root = None
+        elif node.is_left_child():
+            node.parent.left = None
+            node.parent = None
+        else:
+            node.parent.right = None
+            node.parent = None
+
+    def delete(self,value):
+        # Check if the node exists
+        node = self.locate_node(value)
+        if node is None:
+            raise Exception("Value not found in tree")
+        replacement = None
+        rebalance_node = node.parent
+        if node.left is not None:
+            #There's a left child so we replace it with rightmost node
+            replacement = self.rightmost(node.left)
+            #Check if reparenting is necessary
+            if replacement.is_left_child():
+                replacement.parent.set_left(replacement.left)
+            else:
+                replacement.parent.set_right(replacement.right)
+        if replacement:
+            #We found a replacement so replace the value
+            node.value = replacement.value
+            rebalance_node = replacement.parent
+        else:
+            #No replacement, so it means the node to delete is a leaf
+            self.delete_leaf(node)
+        if rebalance_node is not None:
+            self.restore_balance(rebalance_node)
+
+    def search(self, node, lb, ub, results):
+        #Search for values between lower bound and upper bound
+        if node is None:
+            return
+        if lb <= node.value <= ub:
+            results.append(node.value)
+        if node.value >= lb:
+            self.search(node.left, lb, ub, results)
+        if node.value <= ub:
+            self.search(node.right, lb, ub, results)
+
+    def range_query(self, lb, ub):
+        # Search for values between lower bound and upper bound
+        results = []
+        self.search(self.root, lb, ub, results)
+        return results
+

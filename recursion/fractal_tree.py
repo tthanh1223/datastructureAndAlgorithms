@@ -10,6 +10,7 @@ def tree(branch_len, t):
         t.backward(branch_len)
 def main():
     t = turtle.Turtle()
+    t.speed(0)
     my_win = turtle.Screen()
     t.left(90)
     t.up()

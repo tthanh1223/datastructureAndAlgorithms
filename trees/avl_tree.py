@@ -423,6 +423,7 @@ class AVLTree:
         if rebalance_node is not None:
             # Restore balance starting from the parent of the deleted node
             self.restore_balance(rebalance_node)
+        self.size -= 1
 
     def search(self, node, lb, ub, results):
         """
@@ -574,3 +575,6 @@ class AVLTree:
             return check_balance(node.left) and check_balance(node.right)
 
         return check_balance(self.root)
+
+    def __iter__(self):
+        pass

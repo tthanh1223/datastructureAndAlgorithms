@@ -81,7 +81,7 @@ def main():
     t.pendown()
 
     # Draw the tree
-    draw_tree(t, 100, 15)
+    draw_tree(t, 100, 10)
 
     screen.update()
     screen.exitonclick()

@@ -67,5 +67,4 @@ def main_towerHN():
     move_tower(num_disks, A, C, B)
     print(f"Final Stacks: A: {A}, B: {B}, C: {C}")
 
-if __name__ == '__main__':
-    main_towerHN()
+

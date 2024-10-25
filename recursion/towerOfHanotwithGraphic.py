@@ -1,17 +1,15 @@
-# Modify the Tower of Hanoi program using turtle graphics to animate the movement of the disks.
-# Hint: you can make multiple turtles and have them shaped like rectangles
+from turtle import Turtle, Screen
 from ADT_abstract_data_type.stack import Stack
 
-
-from turtle import Turtle, Screen
-def move_to(turtle,x,y):
+def move_to(turtle, x, y):
     turtle.penup()
     turtle.goto(x, y)
     turtle.pendown()
+
 # Define a class for the Tower of Hanoi with Turtle graphics
 class TowerOfHanoiGraphic:
-    def __init__(self, num_disks, screen:Screen):
-        self.towers = [Stack(),Stack(),Stack()]
+    def __init__(self, num_disks, screen: Screen):
+        self.towers = [Stack(), Stack(), Stack()]
         self.screen = screen if screen else Screen()
         self.turtle = Turtle()
         self.turtle.speed(0)
@@ -66,7 +64,7 @@ class TowerOfHanoiGraphic:
         self.turtle.end_fill()
 
         # Draw each rod
-        rod_positions = [-375, 0, 375]
+        rod_positions = [-250, 0, 250]
         for pos in rod_positions:
             self.turtle.fillcolor('saddlebrown')
             self.turtle.penup()
@@ -95,14 +93,15 @@ class TowerOfHanoiGraphic:
             disk_turtle.color('black', 'orange')  # Black outline, orange fill
             disk_turtle.shapesize(stretch_wid=1, stretch_len=(max_disk_width - i * disk_decrement) / 20)
             disk_turtle.penup()
-            disk_turtle.goto(-250, -100 + i * disk_height)  # Start on the first rod
+            # Position disks on the first rod, adjusted for width
+            disk_turtle.goto(-250, -150 + i * disk_height)
             self.towers[0].push(disk_turtle)  # Add the disk to the first tower's stack
             self.disk_turtles.append(disk_turtle)
 
     def move_disk(self, from_tower, to_tower):
         disk = self.towers[from_tower].pop()
         target_x = -250 + (to_tower * 250)  # Adjust x-position for target rod
-        target_y = -100 + len(self.towers[to_tower].items) * 20
+        target_y = -150 + len(self.towers[to_tower].items) * 20
 
         # Animate the movement
         move_to(disk, disk.xcor(), 150)  # Move up to a height of 150
@@ -119,13 +118,14 @@ class TowerOfHanoiGraphic:
             self.solve_hanoi(n - 1, from_tower, aux_tower, to_tower)
             self.move_disk(from_tower, to_tower)
             self.solve_hanoi(n - 1, aux_tower, to_tower, from_tower)
+
 if __name__ == '__main__':
     # Set the number of disks (feel free to change this value)
     window = Screen()
     window.setup(width=1500, height=900)
 
     # Create the TowerOfHanoiGraphic instance with 3 disks
-    num_disks = 10
+    num_disks = 5
     hanoi_graphic = TowerOfHanoiGraphic(num_disks=num_disks, screen=window)
     hanoi_graphic.draw_the_background()
     hanoi_graphic.draw_tower1()
@@ -135,5 +135,3 @@ if __name__ == '__main__':
 
     # Exit when the user clicks on the screen
     window.exitonclick()
-
-

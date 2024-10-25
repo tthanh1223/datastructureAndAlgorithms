@@ -83,7 +83,7 @@ class TowerOfHanoiGraphic:
 
     def init_disks(self):
         disk_height = 20
-        max_disk_width = 100
+        max_disk_width = 150
         disk_decrement = max_disk_width // self.num_disks
 
         # Create disk turtles and position them on the first rod
@@ -101,7 +101,7 @@ class TowerOfHanoiGraphic:
     def move_disk(self, from_tower, to_tower):
         disk = self.towers[from_tower].pop()
         target_x = -250 + (to_tower * 250)  # Adjust x-position for target rod
-        target_y = -150 + len(self.towers[to_tower].items) * 20
+        target_y = -150 + len(self.towers[to_tower].items) * 30
 
         # Animate the movement
         move_to(disk, disk.xcor(), 150)  # Move up to a height of 150

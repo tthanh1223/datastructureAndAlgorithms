@@ -1,0 +1,13 @@
+{
+  "name": 'Frieda',
+  "address": {
+    "work": null, // Doesn't pay rent either
+    "home": "Berlin",
+  },
+  "friends": [
+    {
+      "name": "Philipp",
+      "hobbies": ["eating", "sleeping", "reading",]
+    }
+  ]
+}

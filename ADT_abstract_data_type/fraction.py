@@ -2,6 +2,8 @@ from math import gcd
 
 
 class Fraction:
+    """Represent a fraction"""
+
     def __init__(self, numerator, denominator):
         if not (isinstance(numerator, int) and isinstance(denominator, int)):
             raise ValueError("Both numerator and denominator must be integers.")

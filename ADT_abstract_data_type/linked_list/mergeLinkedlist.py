@@ -119,6 +119,7 @@ def merge_two_linkedlist_ver2(l1: LinkedList, l2: LinkedList) -> LinkedList:
     # If there are remaining nodes in l2
     if cur2:
         prev1.next = cur2
+        cur2 = cur2.next
     return l1
 if __name__ == "__main__":
     l1 = LinkedList()
@@ -129,6 +130,9 @@ if __name__ == "__main__":
     l2 = LinkedList()
     l2.add_tail(2)
     l2.add_tail(4)
+    l2.add_tail(9)
+    l2.add_tail(10)
+    l2.add_tail(11)
     a = merge_two_linkedlist_ver2(l1, l2)
     a.display()
 

@@ -62,6 +62,57 @@ class LinkedList:
             count += 1
             cur = cur.next
         return count
+
+    def delete_head_second_node(self):
+        if self.head is None:
+            return
+        if self.head.next is None:
+            return
+        if self.head.next is not None:
+            self.head.next = self.head.next.next
+        return
+
+    def sum(self):
+        """
+        Count the sum of the node
+        @return: int
+        """
+        s = 0
+        cur = self.head
+        if cur is None:
+            return 0
+        if cur.next is None:
+            return cur.data
+        while cur is not None:
+            s += cur.data
+            cur = cur.next
+        return s
+
+    def check_balance(self):
+        """
+        a list is balance only if abs of the sum of k first nodes - sum of the others < 1/2 sum of the list.
+        @return: index or -1
+        """
+        sum_of_list = self.sum()
+        # | a - b | < 1/2 ( a + b) <=> - 1/2 (a + b) < (a-b) < 1/2 ( a + b)
+        # <=> -a - b < 2a - 2b and 2a - 2b < a + b
+        # <=> b < 3a and a < 3b
+        # viet b = s - a ta co: s -a < 3a and a < 3(s-a) hay s < 4a and 4a < 3s
+        sum_traversal = 0
+        result = -1
+        is_balance = False
+        cur = self.head
+        index = 0
+        while cur is not None and is_balance is False:
+            index = index + 1
+            result = index
+            sum_traversal += cur.data
+            if abs(sum_traversal - (sum_of_list - sum_traversal)) < 1/2 * sum_of_list:
+                is_balance = True
+            cur = cur.next
+        return result
+
+
 def merge_two_linkedlist_ver1(l1: LinkedList, l2: LinkedList) -> LinkedList:
     # Cho 2 ds l1, l2 tăng dần
     # trộn 2 ds này lại sao cho
@@ -93,9 +144,11 @@ def merge_two_linkedlist_ver2(l1: LinkedList, l2: LinkedList) -> LinkedList:
     # version 2: merging l2 into l1 without creating a new list
     cur1 = l1.head
     cur2 = l2.head
+    # Base case - l1 is empty
     if not cur1:
         l1.head = cur2
         return
+    # Base case - l2 is empty
     if not cur2:
         return
     # If l1's first node should be replaced
@@ -126,15 +179,8 @@ if __name__ == "__main__":
     l1.add_tail(1)
     l1.add_tail(3)
     l1.add_tail(5)
-    l1.add_tail(7)
-    l2 = LinkedList()
-    l2.add_tail(2)
-    l2.add_tail(4)
-    l2.add_tail(9)
-    l2.add_tail(10)
-    l2.add_tail(11)
-    a = merge_two_linkedlist_ver2(l1, l2)
-    a.display()
+    l1.add_tail(3)
+    print(l1.check_balance())
 
 
 

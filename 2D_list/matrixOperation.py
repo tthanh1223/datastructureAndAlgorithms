@@ -11,7 +11,7 @@ def output_matrix(matrix):
 
 
 def transform_matrix_ver1(matrix):
-    # Flatten the matrix and sort it
+    # chuyển thành array 1D
     flatten_array = []
     length = len(matrix)
     for i in range(length):
@@ -29,7 +29,7 @@ def transform_matrix_ver1(matrix):
     for start in diagonal_start_points:
         i, j = start
         diagonal_elements = []
-        # Collect all elements in the current diagonal
+        # lấy mấy vị trí trên đường chéo đang xét
         while i < length and j >= 0:
             diagonal_elements.append((i, j))
             i += 1

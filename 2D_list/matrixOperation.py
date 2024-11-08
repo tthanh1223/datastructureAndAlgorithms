@@ -57,14 +57,13 @@ def transform_matrix_ver1(matrix):
 # turning point_3 = 0,2 -> 2,2 -> 2,0 -> 1,0 -> 1,1
 # turning-point_5 = 0,4 -> 4,4 -> 4,0 -> 1,0 -> 1,3 -> 3,3 -> 3,1 -> 2,1 -> 2,2
 def transform_into_spiral_matrix_ver1(matrix): # spiral transformation
-    rotate_flag = False
     flatten_array = []
     length = len(matrix)
     for i in range(length):
         flatten_array.extend(matrix[i])
     print(flatten_array)
     spiral_matrix = [[0] * length for _ in range(length)]
-    # Define boundaries for spiral filling
+    #limits for spiral
     top, bottom, left, right = 0, length - 1, 0, length - 1
     index = 0
     while top <= bottom and left <= right:
@@ -97,38 +96,26 @@ def transform_into_spiral_matrix_ver2(matrix):
     flatten_array = []
     for row in matrix:
         flatten_array.extend(row)
-
-    # Step 2: Sort flatten_array for ordered filling (if required)
-    # flatten_array.sort()  # Only needed if sorted order is required in spiral
-
-    # Step 3: Initialize a new matrix and visited tracker
+    # flatten_array.sort()  #only needed if sorted order is required in spiral
     spiral_matrix = [[0] * n for _ in range(n)]
     visited = [[False] * n for _ in range(n)]
-
-    # Step 4: Define movement directions and rotate-flag
+    #define movement directions and rotate-flag
     directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]  # Right, Down, Left, Up
-    direction = 0  # Start by moving "Right"
-
-    # Step 5: Fill the matrix in a spiral order
+    direction = 0  # start by moving "right"
     row, col = 0, 0  # Starting position
     for value in flatten_array:
         spiral_matrix[row][col] = value
         visited[row][col] = True
-
-        # Calculate the next cell in the current direction
+        #next cell in the current direction
         next_row = row + directions[direction][0]
         next_col = col + directions[direction][1]
-
-        # Check if we need to rotate (out of bounds or visited cell)
+        # check if we need to rotate (out of bounds or visited cell)
         if not (0 <= next_row < n and 0 <= next_col < n and not visited[next_row][next_col]):
-            # Rotate to the next direction
+            #rotate to the next direction
             direction = (direction + 1) % 4
             next_row = row + directions[direction][0]
             next_col = col + directions[direction][1]
-
-        # Move to the next cell
         row, col = next_row, next_col
-
     return spiral_matrix
 
 if __name__ == '__main__':

@@ -121,7 +121,7 @@ def transform_into_spiral_matrix_ver2(matrix):
 if __name__ == '__main__':
     n = int(input())
     matrix = input_matrix(n)
-    print("Original matrix:")
+    print("Original matrix: ")
     output_matrix(matrix)
     transformed_matrix = transform_into_spiral_matrix_ver2(matrix)
     print("\nTransformed matrix:")

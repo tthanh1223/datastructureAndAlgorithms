@@ -12,7 +12,6 @@ def score(candidate: str) -> int:
     return sum(1 for i, c in enumerate(candidate) if c == phrase[i])
 
 
-
 #keeping the right letter
 def keeping_letter(base:str):
     #select a random position to change

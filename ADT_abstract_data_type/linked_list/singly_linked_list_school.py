@@ -1,3 +1,4 @@
+from debugpy.common.timestamp import current
 
 
 class Node:
@@ -8,8 +9,8 @@ class Node:
     def __str__(self):
         return f"{self.data}"
 class SinglyLinkedList:
-    def __init__(self):
-        self.head = None
+    def __init__(self,head=None):
+        self.head = head
         self.tail = None
         self.size = 0
 
@@ -185,7 +186,7 @@ class SinglyLinkedList:
         return result
 
     def reverse_list_with_new(self):
-        # khoong co prev nen chi co the lay data va lam mot cai day moi
+        # khong co prev nen chi co the lay data va lam mot cai day moi
         # tao list moi
         result = self.getElements()[::-1]
         print(result)
@@ -204,15 +205,39 @@ class SinglyLinkedList:
             cur.next = prev
             prev = cur
             cur = temp
-        result = SinglyLinkedList()
-        result.head = cur
+        result = SinglyLinkedList(prev)
         return result
 
     def remove_duplicate(self):
-        pass
+        if not self.head:
+            return
+        seen = set()
+        current = self.head
+        prev = None
+        while current:
+            if current.data in seen:
+                if current.next is None:
+                    self.tail = prev
+                prev.next = current.next
+            else:
+                seen.add(current.data)
+                prev = current
+            current = current.next
 
-    def removeElement(self, key):
-        pass
+    def remove_element(self, value):
+        """Remove all key value in the linked list"""
+        if not self.find_node(value):
+            return
+        prev = None
+        current = self.head
+        while current:
+            if current.data == value:
+                if current.next is None:
+                    self.tail = prev
+                prev.next = current.next
+            else:
+                prev = current
+            current = current.next
 
 class DoubleNode:
     def __init__(self, data):
@@ -232,12 +257,12 @@ if __name__ == '__main__':
     lst.add_pos(14,1)
     lst.add_pos(13,2)
     lst.add_pos(12,3)
-    print(lst.size)
-    print(lst)
     lst.remove_pos(3)
-    print(lst)
-    print(lst.size)
     lst.add_after(9,20)
-    print(lst,lst.tail)
-    a = lst.reverse_list()
-    print(a)
+    lst.add_pos(10,3)
+    lst.add_pos(20,2)
+    lst.add_pos(9,1)
+    print(lst)
+    lst.remove_element(9)
+    print(lst)
+    print(lst.tail)

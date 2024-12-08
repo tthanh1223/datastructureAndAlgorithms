@@ -63,7 +63,7 @@ def performance_experiment():
         stack_linked.pop()  # Implement pop method in UnorderedList
     linked_pop_time = time.time() - start_time
 
-    print(f"Stack Performance:")
+    print("Stack Performance:")
     print(f"Python List Push: {list_push_time:.5f} seconds")
     print(f"Linked List Push: {linked_push_time:.5f} seconds")
     print(f"Python List Pop: {list_pop_time:.5f} seconds")
@@ -93,7 +93,7 @@ def performance_experiment():
         queue_linked.pop(0)  # Remove from the front for the linked list queue
     linked_dequeue_time = time.time() - start_time
 
-    print(f"\nQueue Performance:")
+    print("\nQueue Performance:")
     print(f"Python List Enqueue: {list_enqueue_time:.5f} seconds")
     print(f"Linked List Enqueue: {linked_enqueue_time:.5f} seconds")
     print(f"Python List Dequeue: {list_dequeue_time:.5f} seconds")

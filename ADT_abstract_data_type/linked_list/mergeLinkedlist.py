@@ -180,24 +180,23 @@ def merge_two_linkedlist_ver2(l1: LinkedList, l2: LinkedList) -> LinkedList:
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
-class Solution:
-    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-        result = ListNode()
-        dummy = result
-        while list1 and list2 is not None:
-            if list1.val <= list2.val:
-                result.next = list1
-                list1, result = list1.next, list1
-            else:
-                result.next = list2
-                list2, result = list2.next, list2
-        while list1 is not None:
+def merge_two_lists(list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+    result = ListNode()
+    dummy = result
+    while list1 and list2 is not None:
+        if list1.val <= list2.val:
             result.next = list1
             list1, result = list1.next, list1
-        while list2 is not None:
+        else:
             result.next = list2
             list2, result = list2.next, list2
-        return dummy.next
+    while list1 is not None:
+        result.next = list1
+        list1, result = list1.next, list1
+    while list2 is not None:
+        result.next = list2
+        list2, result = list2.next, list2
+    return dummy.next
 
 if __name__ == "__main__":
     l1 = LinkedList()

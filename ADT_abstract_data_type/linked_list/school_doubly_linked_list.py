@@ -188,10 +188,24 @@ class DoublyLinkedList:
     def count_elements(self, head):
         pass
     def count_appearance(self, value):
-        pass
-    def reverselist(self):
-        pass
-    def remove_duplicate(self):
+        count = 0
+        cur = self.head
+        while cur:
+            if cur.data == value:
+                count += 1
+            cur = cur.next
+        return count
+
+    def reverse(self):
+        cur = self.head
+        prev = None
+        while cur:
+            cur.next, cur.prev, prev, cur = cur.prev, cur.next, cur, cur.next
+        self.tail, self.head = self.head, self.tail
+        return self
+
+
+    def remove_duplicates(self):
         pass
     def remove_element(self, key):
         pass

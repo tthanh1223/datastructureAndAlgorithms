@@ -75,7 +75,19 @@ class DoublyLinkedList:
     def remove_all(self):
         pass
     def remove_before(self, val):
-        pass
+        cur = self.head
+        while cur and cur.next:
+            if cur.next.data == val:
+                # if the node before the val is head
+                if cur.prev is None:
+                    self.head = cur.next
+                    self.head.prev = None
+                else:
+                    cur.prev.next = cur.next
+                    cur.next.prev = cur.prev
+                return
+            cur = cur.next
+
     def remove_after(self, val):
         pass
 

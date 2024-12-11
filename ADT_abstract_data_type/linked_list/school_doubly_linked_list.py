@@ -73,7 +73,16 @@ class DoublyLinkedList:
         self.size -= 1
 
     def remove_all(self):
-        pass
+        self.__init__()
+
+    def find_node(self, data):
+        cur = self.head
+        while cur:
+            if cur.data == data:
+                return True
+            cur = cur.next
+        return False
+
     def remove_before(self, val):
         cur = self.head
         while cur and cur.next:

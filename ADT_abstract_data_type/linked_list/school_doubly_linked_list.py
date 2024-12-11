@@ -206,9 +206,35 @@ class DoublyLinkedList:
 
 
     def remove_duplicates(self):
-        pass
-    def remove_element(self, key):
-        pass
+        """Not return anything"""
+        seen = set()
+        cur = self.head
+        while cur:
+            if cur.data not in seen:
+                seen.add(cur.data)
+            else:
+                cur.prev.next = cur.next
+                if cur == self.tail:
+                    self.tail = cur.prev
+                    return
+                else:
+                    cur.next.prev = cur.prev
+            cur = cur.next
+
+    def remove_elements(self, key):
+        cur = self.head
+        while cur:
+            if cur.data == key:
+                if cur == self.head:
+                    self.head = cur.next
+                    cur.next.prev = None
+                elif cur == self.tail:
+                    self.tail = cur.prev
+                    cur.prev.next = None
+                else:
+                    cur.prev.next = cur.next
+                    cur.next = cur.prev
+            cur = cur.next
 
 if __name__ == "__main__":
     a = DoublyLinkedList()

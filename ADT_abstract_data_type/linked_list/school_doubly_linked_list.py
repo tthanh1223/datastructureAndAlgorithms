@@ -169,9 +169,22 @@ class DoublyLinkedList:
         print(f"No found value: {val}")
 
     def add_after(self, data, val):
-        pass
-    def print_list(self, head):
-        pass
+        cur = self.head
+        while cur:
+            if cur.data == val:
+                if cur == self.tail:
+                    self.add_tail(data)
+                    return
+                new_node = DNode(data)
+                new_node.next = cur.next
+                cur.next.prev = new_node
+                new_node.prev = cur
+                cur.next = new_node
+                self.size += 1
+                return
+            cur = cur.next
+        print(f"No found value: {val}")
+
     def count_elements(self, head):
         pass
     def count_appearance(self, value):

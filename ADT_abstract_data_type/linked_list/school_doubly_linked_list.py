@@ -94,6 +94,7 @@ class DoublyLinkedList:
                 else:
                     cur.prev.next = cur.next
                     cur.next.prev = cur.prev
+                self.size -= 1
                 return
             cur = cur.next
 
@@ -109,6 +110,7 @@ class DoublyLinkedList:
                     cur.next = None
                 else:
                     cur.next = cur.next.next
+                self.size = -1
                 return
             cur = cur.next
 
@@ -185,8 +187,6 @@ class DoublyLinkedList:
             cur = cur.next
         print(f"No found value: {val}")
 
-    def count_elements(self, head):
-        pass
     def count_appearance(self, value):
         count = 0
         cur = self.head
@@ -197,6 +197,7 @@ class DoublyLinkedList:
         return count
 
     def reverse(self):
+        """Return self so need to reassign"""
         cur = self.head
         prev = None
         while cur:
@@ -240,8 +241,14 @@ if __name__ == "__main__":
     a = DoublyLinkedList()
     a.add_head(5)
     a.add_head(10)
+    a.add_head(2)
     a.add_pos(9,1)
     a.add_pos(6,2)
+    a.add_before(1,10)
+    a.add_after(2,5)
+    a.add_pos(10,4)
+    a.remove_elements(10)
     print(a)
-
+    print(a.head)
+    print(a.tail)
 

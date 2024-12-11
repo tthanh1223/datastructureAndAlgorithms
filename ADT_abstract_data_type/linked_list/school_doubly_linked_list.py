@@ -152,7 +152,22 @@ class DoublyLinkedList:
             self.tail = cur
 
     def add_before(self, data, val):
-        pass
+        cur = self.head
+        while cur:
+            if cur.data == val:
+                if cur == self.head:
+                    self.add_head(data)
+                    return
+                new_node = DNode(data)
+                cur.prev.next = new_node
+                new_node.prev = cur.prev
+                new_node.next = cur
+                cur.prev = new_node
+                self.size += 1
+                return
+            cur = cur.next
+        print(f"No found value: {val}")
+
     def add_after(self, data, val):
         pass
     def print_list(self, head):

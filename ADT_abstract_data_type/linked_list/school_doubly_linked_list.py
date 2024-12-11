@@ -98,7 +98,19 @@ class DoublyLinkedList:
             cur = cur.next
 
     def remove_after(self, val):
-        pass
+        cur = self.head
+        while cur:
+            if cur.data == val:
+                # the node after the val is tail
+                if cur.next is None:
+                    return
+                elif cur.next.next is None:
+                    self.tail = cur
+                    cur.next = None
+                else:
+                    cur.next = cur.next.next
+                return
+            cur = cur.next
 
     def add_pos(self, data, pos):
         if pos == 0:

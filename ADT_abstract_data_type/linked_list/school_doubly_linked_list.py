@@ -133,7 +133,24 @@ class DoublyLinkedList:
         self.size += 1
 
     def remove_pos(self, pos):
-        pass
+        if pos == 0:
+            self.remove_head()
+            return
+        cur = self.head
+        cur_pos = 0
+        while cur and cur_pos < pos - 1:
+            cur = cur.next
+            cur_pos += 1
+        if cur is None:
+            print("Out of index")
+            return
+        node_to_remove = cur.next
+        cur.next = node_to_remove.next
+        if node_to_remove.next:
+            node_to_remove.next.prev = cur
+        if node_to_remove == self.tail:
+            self.tail = cur
+
     def add_before(self, data, val):
         pass
     def add_after(self, data, val):

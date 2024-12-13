@@ -90,9 +90,7 @@ def main():
             phone = input("Enter new phone number: ")
             manager.update_contact(index, name, phone)
         elif choice == '4':
-            index = input("Enter the index of the contact to delete: ")
-            if isinstance(index,int):
-                index = int(index) - 1
+            index = int(input("Enter the index of the contact to delete: ")) - 1
             manager.delete_contact(index)
 
         elif choice == '5':

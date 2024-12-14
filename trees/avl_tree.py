@@ -3,7 +3,6 @@
 class AVLNode:
     """
     Represents a node in an AVL Tree.
-
     Attributes:
         value (Any): The value stored in the node.
         parent (AVLNode, optional): Reference to the parent node. Defaults to None.

@@ -22,20 +22,20 @@ def find_next_greater_element(nums1, nums2):
     return ans
 
 def next_greater_element_with_stack(nums1, nums2):
-    map = {}
+    map1 = {}
     stack = []
     for num in nums2:
         if not stack or stack[-1] > num:
             stack.append(num)
         else:
             while stack and stack[-1] < num:
-                map[stack.pop()] = num
+                map1[stack.pop()] = num
             stack.append(num)
     while stack:
-        map[stack.pop()] = -1
+        map1[stack.pop()] = -1
     res = []
     for num in nums1:
-        res.append(map[num])
+        res.append(map1[num])
     return res
 
 if __name__ == "__main__":

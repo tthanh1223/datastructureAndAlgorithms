@@ -4,11 +4,9 @@ def input_matrix(length):
         result.append(list(map(int, input().split())))
     return result
 
-
 def output_matrix(matrix):
     for row in matrix:
         print(" ".join(map(str, row)))
-
 
 def transform_matrix_ver1(matrix):
     # chuyển thành array 1D

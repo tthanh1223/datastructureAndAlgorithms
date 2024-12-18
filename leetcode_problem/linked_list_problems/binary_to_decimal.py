@@ -42,6 +42,5 @@ def get_decimal_value(head: ListNode) -> int:
         res = 2*res + cur.val
         cur = cur.next
     return res
-
 if __name__ == "__main__":
     print(a)

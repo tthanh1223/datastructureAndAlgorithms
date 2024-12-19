@@ -20,3 +20,24 @@ def preorder_traversal(root: Optional[TreeNode]) -> List[int]:
         if cur.left:
             stack.push(cur.left)
     return result
+
+
+# Definition for a Node.
+class Node:
+    def __init__(self, val: Optional[int] = None, children: Optional[List['Node']] = None):
+        self.val = val
+        self.children = children
+
+
+def preorder_n_tree(self, root: 'Node') -> List[int]:
+    if not root:
+        return []
+    stack = [root]
+    result = []
+    while len(stack) != 0:
+        cur = stack.pop()
+        result.append(cur.val)
+        if cur.children:
+            stack.extend(cur.children[::-1])
+    return result
+

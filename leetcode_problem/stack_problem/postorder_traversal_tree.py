@@ -29,6 +29,20 @@ def postorder_traversal(root: Optional[TreeNode]) -> List[int]:
         result.append(stack2.pop().val)
     return result
 
-
+def postorder_n_tree(root: 'Node') -> List[int]:
+    if not root:
+        return []
+    stack1 = []
+    stack2 = []
+    stack1.append(root)
+    result = []
+    while stack1:
+        cur = stack1.pop()
+        stack2.append(cur)
+        if cur.children:
+            stack1.extend(cur.children)
+    while stack2:
+        result.append(stack2.pop().val)
+    return result
 
 

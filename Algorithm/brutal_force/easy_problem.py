@@ -60,11 +60,51 @@ def check_palindrome(string: str):
             return False
     return True
 
-#4.Find all pairs in an array with a given sum:
+#4.Find all pairs in an array with a given sum
+def find_pair(arr: list, sum: int):
+    pairs = []
+    for i in range(len(arr)):
+        for j in range(i + 1, len(arr)):
+            if arr[i] + arr[j] == sum:
+                pairs.append((arr[i], arr[j]))
+    return pairs
 
+#5.Find the first non-repeating character in a string
+def find_first_non_repeating(s: str):
+    for i in range(len(s)):
+        count = 0
+        for j in range(len(s)):
+            if s[i] == s[j]:
+                count += 1
+        if count == 1:
+            return s[i]
+    return None
+
+#6.Count the number of occurrences of each character in a string
+def find_occurrences(s: str):
+    counts = {}
+    for i in range(len(s)):
+        counts[s[i]] = counts.get(s[i], 0) + 1
+    return counts
+
+#7.Find the length of the longest common prefix in an array of strings
+def find_longest_common_prefix(arr: list[str]):
+    if not arr:
+        return ""
+
+    common_prefix = ''
+    for i in range(len(arr[0])):
+        char = arr[0][i]
+        for string in arr[1:]:
+            #If the current character doesn't match or exceed the length of the string
+            if i >= len(string) or string[i] != char:
+                return common_prefix
+        #If all strings have the same character at this position, add it to the prefix
+        common_prefix += char
+    return common_prefix, len(common_prefix)
 
 
 
 if __name__ == '__main__':
-    string = 'abcbaa'
-    print(check_palindrome(string))
+    arr = ['flower', 'flawless','fly']
+    print(find_longest_common_prefix(arr))

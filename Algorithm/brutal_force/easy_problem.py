@@ -12,7 +12,14 @@ def max_product(arr: list):
 # 2.Find the sum of all subsets of an array:
 def sum_subsets(arr: list):
     res = []
-
+    for i in range(1 << len(arr)): # shift operator 1 >> n : multiple 2 but n times
+        subset_sum = 0
+        # For each bit in the binary number, check if the corresponding element is in the subset
+        for j in range(len(arr)):
+            if i & (1 << j): # Check if the j-th bit is set
+                subset_sum += arr[j]
+        res.append(subset_sum)
+    return res
 
 if __name__ == '__main__':
     arr = [1,5,6,7234,64,3]

@@ -21,6 +21,24 @@ def sum_subsets(arr: list):
         res.append(subset_sum)
     return res
 
+def sum_subsets_recursive(arr: list):
+    def helper(index, current_sum):
+        #Base case: If we've considered all elements
+        if index == len(arr):
+            subsets.append(current_sum)
+            return
+        # Recursive case: Include or exclude current element
+        # Include the current element
+        helper(index + 1, current_sum + arr[index])
+        # Exclude the current element
+        helper(index + 1, current_sum)
+
+    subsets_sum = []
+    helper(0, 0)
+    return subsets_sum
+
+
+
 if __name__ == '__main__':
     arr = [1,5,6,7234,64,3]
     print(max_product(arr))

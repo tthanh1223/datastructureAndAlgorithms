@@ -37,7 +37,14 @@ def sum_subsets_recursive(arr: list):
     helper(0, 0)
     return subsets_sum
 
-
+def sum_subsets_without_bitwise(arr: list):
+    subsets = [0]
+    for num in arr:
+        new_sums = []
+        for current_sum in subsets:
+            new_sums.append(current_sum + num)
+        subsets.extend(new_sums)
+    return subsets
 
 if __name__ == '__main__':
     arr = [1,5,6,7234,64,3]

@@ -9,8 +9,8 @@ def max_product(arr: list):
                 x1, y1 = i, j
     return max_prod, (x1,y1)
 
-# 2.Find the sum of all subsets of an array:
-def sum_subsets(arr: list):
+# 2.Find the sum of all subsets of an array
+def sum_subsets_with_bitwise(arr: list):
     res = []
     for i in range(1 << len(arr)): # shift operator 1 >> n : multiple 2 but n times
         subset_sum = 0
@@ -46,6 +46,25 @@ def sum_subsets_without_bitwise(arr: list):
         subsets.extend(new_sums)
     return subsets
 
+#3.Check if a string is a palindrome
+#A string is a palindrome if it reads the same forward and backward. Use brute force to check all possible character comparisons.
+#Example: Input: "racecar", Output: True
+def check_palindrome(string: str):
+    left = 0
+    right = len(string) - 1
+    while left < right:
+        if string[left] == string[right]:
+            left += 1
+            right -= 1
+        else:
+            return False
+    return True
+
+#4.Find all pairs in an array with a given sum:
+
+
+
+
 if __name__ == '__main__':
-    arr = [1,5,6,7234,64,3]
-    print(max_product(arr))
+    string = 'abcbaa'
+    print(check_palindrome(string))

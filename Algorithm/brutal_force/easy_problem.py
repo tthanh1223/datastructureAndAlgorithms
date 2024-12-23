@@ -91,7 +91,6 @@ def find_occurrences(s: str):
 def find_longest_common_prefix(arr: list[str]):
     if not arr:
         return ""
-
     common_prefix = ''
     for i in range(len(arr[0])):
         char = arr[0][i]
@@ -103,8 +102,18 @@ def find_longest_common_prefix(arr: list[str]):
         common_prefix += char
     return common_prefix, len(common_prefix)
 
-
+#8.Generate all permutations of a string
+def generate_all_permutations(s: str):
+    if len(s) <= 1:
+        return [s]
+    permutations = []
+    for i, char in enumerate(s):
+        # Fix the current character and permute the rest
+        remaining = s[:i] + s[i+1:]
+        for perm in generate_all_permutations(remaining):
+            permutations.append(char + perm)
+    return permutations
 
 if __name__ == '__main__':
-    arr = ['flower', 'flawless','fly']
-    print(find_longest_common_prefix(arr))
+    s = '123'
+    print(generate_all_permutations(s))

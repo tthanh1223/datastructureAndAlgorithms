@@ -122,6 +122,20 @@ def find_prime_up_to_N(N: int) -> list[int]:
         if is_prime:
             primes.append(num)
     return primes
+# cách dùng sàn nguyên tố sieve_of_eratosthenes
+def sieve_of_eratosthenes(limit: int) -> list[int]:
+    prime = [True] * (limit + 1)
+    prime[0] = False
+    prime[1] = False
+    for i in range(2, int(limit ** 0.5) + 1):
+        if prime[i]:
+            for j in range(i**2, limit + 1, i):
+                prime[j] = False
+    primes = []
+    for i in range(len(prime)):
+        if prime[i]:
+            primes.append(i)
+    return primes
 
 if __name__ == '__main__':
     arr= [123,412,4123,12,543,29,192,492,324]

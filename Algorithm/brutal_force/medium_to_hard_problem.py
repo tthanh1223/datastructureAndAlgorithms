@@ -110,6 +110,18 @@ def longest_increasing_subsequence_optimized_with_array(arr):
         current_index = parent[current_index]
     return lis[::-1]  # Reverse to get LIS in the correct order
 
+#14. Find all prime numbers up to N
+def find_prime_up_to_N(N: int) -> list[int]:
+    primes = []
+    for num in range(2, N+1):
+        is_prime = True
+        for divisor in range(2, num):
+            if num % divisor == 0:
+                is_prime = False
+                break
+        if is_prime:
+            primes.append(num)
+    return primes
 
 if __name__ == '__main__':
     arr= [123,412,4123,12,543,29,192,492,324]

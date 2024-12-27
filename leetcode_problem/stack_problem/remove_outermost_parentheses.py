@@ -25,6 +25,21 @@ def remove_outermost_parentheses(s):
         index += 1
     return "".join([s[pair[0]+1:pair[1]] for pair in decomposition])
 
+def remove_outermost(s):
+    answer = ""
+    count = 0
+    for char in s:
+        if char == '(':
+            if count > 0:
+                answer += char
+
+            count += 1
+        else:
+            count -= 1
+            if count > 0:
+                answer += char
+    return answer
+
 if __name__ == '__main__':
     s = "(()())(())"
     print(remove_outermost_parentheses(s))

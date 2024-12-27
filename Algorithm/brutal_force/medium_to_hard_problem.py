@@ -138,5 +138,4 @@ def sieve_of_eratosthenes(limit: int) -> list[int]:
     return primes
 
 if __name__ == '__main__':
-    arr= [123,412,4123,12,543,29,192,492,324]
-    print(longest_increasing_subsequence_dp(arr))
+    print(sieve_of_eratosthenes(1000))

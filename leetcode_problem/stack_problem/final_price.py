@@ -35,6 +35,17 @@ def find_prices_with_stack(prices : list[int]) -> list[int]:
             final_prices[index] -= prices[i]
         stack.append(i)
     return final_prices
+# Illustrate
+# ex: [8,4,6,2,3]
+# i = 0: stack = [0]
+# i = 1:  4 < 8 => stack = [] and final_prices[0] = 8 - 4 = 4 ; stack = [1]
+# i = 2: 6 > 4 => stack = [1,2]
+# i = 3: 2 < 6 => stack = [1] and final_prices[2] = 6 - 2 = 4,
+#        2 < 4 => stack = [] and final_prices[1] = 4 - 2 = 2,
+#        stack = [3]
+# i = 4: stack = [3,4]
+
+
 
 if __name__ == '__main__':
     prices = [8,4,6,2,3]

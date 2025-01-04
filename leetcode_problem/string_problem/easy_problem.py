@@ -43,6 +43,21 @@ def is_subsequence(s: str, t: str) -> bool:
             subsequence += 1
     return subsequence == len(s)
 
+from collections import Counter
+def longest_palindrome(s: str) -> str:
+    a = Counter(s)
+    longest = 0
+    has_odd = False
+    for i in a:
+        if a[i] % 2 == 0:
+            longest += a[i]
+        else:
+            longest += a[i] - 1
+            has_odd = True
+    if has_odd:
+        longest += 1
+    return longest
+
 if __name__ == '__main__':
     s = "zabx"
     print(get_lucky(s, 2))

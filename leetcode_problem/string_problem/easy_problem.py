@@ -34,6 +34,14 @@ def binaryTreePaths(root: Optional[TreeNode]) -> List[str]:
     dfs(root, [], paths)
     return paths
 
+def is_subsequence(s: str, t: str) -> bool:
+    if len(s) > len(t): return False
+    if len(s) == 0: return True
+    subsequence = 0
+    for i in range(len(t)):
+        if s[subsequence] == t[i]:
+            subsequence += 1
+    return subsequence == len(s)
 
 if __name__ == '__main__':
     s = "zabx"

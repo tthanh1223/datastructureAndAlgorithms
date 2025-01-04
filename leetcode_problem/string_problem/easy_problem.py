@@ -18,7 +18,7 @@ def get_lucky(s: str, k: int) -> str:
         checked += str(ord(i) - ord('a') + 1)
     return sum_digit(checked, k)
 
-def binary_tree_paths(root: Optional[TreeNode]) -> List[str]:
+def binary_tree_paths(root) -> list[str]:
     def dfs(node, path, paths):
         if not node:
             return
@@ -33,7 +33,6 @@ def binary_tree_paths(root: Optional[TreeNode]) -> List[str]:
     paths = []
     dfs(root, [], paths)
     return paths
-
 def is_subsequence(s: str, t: str) -> bool:
     if len(s) > len(t): return False
     if len(s) == 0: return True

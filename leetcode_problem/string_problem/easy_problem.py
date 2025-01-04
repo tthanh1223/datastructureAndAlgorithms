@@ -18,7 +18,7 @@ def get_lucky(s: str, k: int) -> str:
         checked += str(ord(i) - ord('a') + 1)
     return sum_digit(checked, k)
 
-def binaryTreePaths(root: Optional[TreeNode]) -> List[str]:
+def binary_tree_paths(root: Optional[TreeNode]) -> List[str]:
     def dfs(node, path, paths):
         if not node:
             return
